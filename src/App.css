@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+:root {
+  --curved: 10px;
+}
+
 h1 {
   font-weight: bold;
 }
@@ -22,18 +26,26 @@ h1 {
   margin-bottom: 2em;
 }
 
+.single-card {
+  width: 100%;
+  border: 2px solid black;
+  padding: 0.5em;
+  border-radius: var(--curved);
+}
 .card-cont {
   display: flex;
   flex-wrap: wrap;
 }
 
 .card {
-  width: 33%;
-  height: 33vh;
+  width: 50%;
+  height: 50vh;
+  min-height: 450px;
   border: 2px solid black;
   padding: 0.5em;
-  border-radius: 10px;
+  border-radius: var(--curved);
   overflow: hidden;
+  position: relative;
 }
 
 .card:hover {
@@ -44,18 +56,113 @@ h1 {
 
 .card > img {
   width: 100%;
+  border-radius: var(--curved);
+  
 }
 
+.card:hover {
+  cursor: pointer;
+}
+.card:hover .img-caption {
+  opacity: 1;
+  transition: 0.5s;
+  bottom: 5px;
+}
+.card:hover .saveBtn {
+  opacity: 1;
+  transition: 0.5s;
+  top: 5px;
+
+}
 .img-caption {
   color: rgba(0,0,0,0);
-  border-radius: 10px;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  font-size: 1.5em;
+  margin: auto;
+  text-align: center;
+  border-radius: var(--curved);
+  padding: 0.5em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,1);
+  transition: 0.5s;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+
+.img-caption,
+.saveBtn,
+.social-media {
+  opacity: 0;
+}
+.saveBtn {
+  color: rgba(0,0,0,1);
+  background-color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  top: 0px;
+  right: 5px;
+  position: absolute;
+  color: rgba(0,0,0,0);
+  border-radius: var(--curved);
   padding: 0.5em;
 }
 
-.img-caption:hover {
-  color: rgba(0,0,0,1);
-  transition: 0.5s;
-  background-color: rgba(255,255,255,0.6);
+.saveBtn > a {
+  padding-right: 0.5em;
+}
+.saveBtn > a:hover {
   cursor: pointer;
+  font-weight: bold;
+}
+
+input[name="searchTerm"]{
+  padding: 1em;
+  border-radius: 20px;
+}
+
+.card:hover .social-media {
+  opacity: 1;
+  transition: 0.5s;
+}
+.social-media {
+  list-style: none;
+  padding: 0.25em;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: var(--curved);
+  background-color: rgba(50,50,50,0.6);
+
+
+}
+
+.social-media li {
+  font-size: 1.5em;
+  padding: 0.3em;
+  color: white;
   
 }
+
+.social-media li:hover {
+  color: gray;
+  transition: 0.3s;
+}
+
+.share-link {
+  display: none!important;
+}
+
+
+
+/* may keep or sold to agency or sold on
+
+300000 00232904 ref 12139559822
+
+08081450370 recoveries */

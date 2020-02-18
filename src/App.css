@@ -7,6 +7,19 @@
   --curved: 10px;
 }
 
+#root {
+  width: 100%;
+}
+body {
+  background-color: rgb(34, 34, 34);
+}
+
+header {
+  font-size: 1em;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
 h1 {
   font-weight: bold;
 }
@@ -19,56 +32,110 @@ h1 {
 }
 
 
+input[name="searchTerm"]{
+  /* font-size: 2em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  padding: 0.5em; */
+  border-radius: var(--curved) 0 0 var(--curved);
+  /* border: 2px solid black; */
+}
+
+select[name="category"],
+select[name="quant"]{
+  border-radius: 0;
+}
+
+select, input, button {
+  padding: 0.5em;
+  border-radius: 0 var(--curved) var(--curved) 0;
+  font-size: 1em;
+  border: 2px solid black;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu;
+  font-weight: bold;
+}
+
+input {
+  width: 65%;
+}
+
+select[name="quant"] {
+  font-size: 0.95em;
+}
+
+button {
+  background: black;
+  color: white;
+}
+
+button:hover {
+    background: darkslategray;
+    /* color: darkslategray; */
+    transition: 0.5s;
+    cursor: pointer;
+
+}
+select:hover {
+  cursor: pointer;
+}
 .main-cont > button {
   width: 200px;
   align-self: center;
   padding: 1em;
   margin-bottom: 2em;
+
+}
+
+.search-box {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 3em;
 }
 
 .single-card {
   width: 100%;
+  height: 80vh;
   border: 2px solid black;
   padding: 0.5em;
   border-radius: var(--curved);
+  position: relative;
 }
 .card-cont {
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;  
+  border-radius: var(--curved);
+  /* border: 2px solid black; */
 }
 
 .card {
-  width: 50%;
+  width: 100%;
   height: 50vh;
   min-height: 450px;
-  border: 2px solid black;
+  border: 1px solid gray;
   padding: 0.5em;
-  border-radius: var(--curved);
-  overflow: hidden;
   position: relative;
 }
 
-.card:hover {
-  /* opacity: 0.5;
-  transition: 0.5s;
-  cursor: pointer; */
-}
 
-.card > img {
-  width: 100%;
-  border-radius: var(--curved);
-  
-}
-
-.card:hover {
+.card:hover,
+.single-card:hover {
   cursor: pointer;
+  border: 10px white solid;
+  transition: 0.5s;
 }
-.card:hover .img-caption {
+.card:hover .img-caption,
+.single-card:hover
+ {
   opacity: 1;
   transition: 0.5s;
   bottom: 5px;
 }
-.card:hover .saveBtn {
+.card:hover .saveBtn,
+.single-card:hover .saveBtn {
   opacity: 1;
   transition: 0.5s;
   top: 5px;
@@ -81,7 +148,7 @@ h1 {
   left: 0;
   right: 0;
   width: fit-content;
-  font-size: 1.5em;
+  font-size: 1em;
   margin: auto;
   text-align: center;
   border-radius: var(--curved);
@@ -119,19 +186,15 @@ h1 {
   font-weight: bold;
 }
 
-input[name="searchTerm"]{
-  padding: 1em;
-  border-radius: 20px;
-}
-
-.card:hover .social-media {
+.card:hover .social-media,
+.single-card:hover .social-media {
   opacity: 1;
   transition: 0.5s;
 }
 .social-media {
   list-style: none;
   padding: 0.25em;
-  display: flex;
+  display: none;
   margin: auto;
   justify-content: center;
   position: absolute;
@@ -159,10 +222,40 @@ input[name="searchTerm"]{
   display: none!important;
 }
 
+@media (min-width: 768px) {
+  header {
+    font-size: 1.75em;
+  }
 
+  .search-box {
+    width: 70%;
+    width: fit-content;
+  }
 
-/* may keep or sold to agency or sold on
+  select, input, button {
+    padding: 0.5em;
+    font-size: 2em;
+  }
 
-300000 00232904 ref 12139559822
+  select[name="quant"] {
+    font-size: 1.95em;
+  }
 
-08081450370 recoveries */
+  .card {
+    width: 50%;
+  }
+
+  .img-caption {
+  color: rgba(0,0,0,1);
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  font-size: 1.5em;
+  }
+
+  .social-media {
+    display: flex;
+  }
+}

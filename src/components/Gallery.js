@@ -21,21 +21,20 @@ class Gallery extends React.Component {
     }
 
     updateGallery() {
-        fetch(`https://images-api.nasa.gov/search?q=${this.state.searchTerm}`)
+        fetch(`https://images-api.nasa.gov/search?q=nebula%20${this.state.searchTerm}`)
             .then(response => response.json())
             .then(response => {
                 const {items} = response.collection
-                console.log(items)
                 this.setState({galleryData: items, isLoading: false})
             })
     }
     componentDidMount() {
-        console.log("hello")
         this.updateGallery()
         
     }
 
-    getImages() {
+    getImages(e) {
+        
         const imgArray = []
         const duplicateCheck = [] // cannot easily compare objects, so create stringified list
         for (let i=0; i<this.state.imgQuant; i++) {
@@ -58,16 +57,18 @@ class Gallery extends React.Component {
            
             duplicateCheck.includes(JSON.stringify(imgObj)) ? i -= 1: imgArray.push(imgObj)
             duplicateCheck.push(JSON.stringify(imgObj))
+            e.preventDefault()
             
         }
         
         this.setState({
             randImgs: imgArray
         })
+        console.log(this.state.randImgs)
     }
 
     handleChange(e) {
-        if (e.target.name === "searchTerm") {
+        if (e.target.name === "searchTerm" && e.target.value) {
             this.setState({searchTerm: e.target.value}, ()=> {
                 this.updateGallery()
                 console.log(this.state.searchTerm)
@@ -75,14 +76,18 @@ class Gallery extends React.Component {
             
         } 
         e.target.name === "quant" && this.setState({imgQuant: e.target.value })
+        // e.target.name === "category" && this.setState()
     }
     render() {
         return (
             <div className="main-cont">
-                <h2>Gallery</h2>
-                <QuantForm handleChange={this.handleChange} quant={this.state.imgQuant} searchTerm={this.state.searchTerm}/>
+                <QuantForm 
+                    handleChange={this.handleChange} 
+                    quant={this.state.imgQuant} 
+                    searchTermValue={this.state.searchTerm}
+                    clickHandle={this.getImages}
+                />
                 {this.state.isLoading ? <h2>...loading</h2> : null}
-                <button onClick={this.getImages}>Search</button>
                 <div className="card-cont">
                     {this.state.randImgs &&
                     this.state.randImgs.map( (img) => {
